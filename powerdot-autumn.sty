@@ -1,0 +1,175 @@
+%%
+%% This is file `powerdot-autumn.sty',
+%% 
+%% ---------------------------------------------------------------
+%% Author: Anjishnu Sarkar
+%% This is a re-creation of PPRautumn.sty, a style file created
+%% by Frédéric Goualard for prosper.
+%% The style file is compatible with powerdot-v1.4
+%% ---------------------------------------------------------------
+%%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{powerdot-autumn}[2010/03/31 v1.0 autumn style (AS)]
+\RequirePackage{pifont}
+\RequirePackage{pst-grad}
+\RequirePackage{times}
+\RequirePackage{amssymb}
+
+\definecolor{fontcolor1}{RGB}{255,255,255}
+\definecolor{fontcolor2}{RGB}{205,155,29}
+\definecolor{iacolor}{RGB}{190,163,117}
+\colorlet{pdcolor1}{green!15!black}
+% \colorlet{pdcolor2}{green!25!black}
+\colorlet{pdcolor2}{red}
+\colorlet{pdcolor3}{green!35!black}
+\definecolor{darkgreen}{rgb}{0.15,0.15,0.15}
+\definecolor{darkolivegreen}{rgb}{0.333,0.419,0.18431}
+\definecolor{darkgoldenrod}{rgb}{0.5451,0.39608,0.03137}
+\definecolor{goldenrod}{rgb}{0.80392,0.60784,0.11373}
+
+\pddefinetemplate{titleslide}{
+  titlefont=\bfseries\LARGE\color{fontcolor2}\centering,
+  clockcolor=fontcolor1,clockpos={.99\slidewidth,\slideheight},
+  lfpos={.03\slidewidth,.02\slideheight},
+  lffont=\scriptsize\color{fontcolor1},
+%  cfpos={.5\slidewidth,.02\slideheight},
+%  cffont=\scriptsize\color{fontcolor1},
+  rfpos={.97\slidewidth,.02\slideheight},
+  rffont=\scriptsize\color{fontcolor1},
+  texthook=t,textpos={.5\slidewidth,.75\slideheight},
+  textwidth=.9\slidewidth,
+  textfont=\color{fontcolor1}\centering,
+  textheight=.69\slideheight,
+  ifsetup=portrait,
+    lfpos={.03\slidewidth,.03\slideheight},
+%    cfpos={.5\slidewidth,.03\slideheight},
+    rfpos={.97\slidewidth,.03\slideheight},
+}{%
+  \psframe[linestyle=none,linewidth=0pt,fillstyle=gradient,%
+    gradbegin=darkgreen,gradend=darkolivegreen,%
+    gradmidpoint=1](0,\slideheight)(\slidewidth,0)
+}
+
+\pddefinetemplate{basic}{
+    titlefont=\bfseries\Large\color{fontcolor2}\raggedright,
+    clockpos={0.99\slidewidth,\slideheight},
+    clockcolor=fontcolor1,
+    lfpos={.03\slidewidth,.02\slideheight},
+    lffont=\scriptsize\color{fontcolor1},
+%     cfpos={.5\slidewidth,.02\slideheight},
+%     cffont=\scriptsize\color{fontcolor1},
+    rfpos={.97\slidewidth,.02\slideheight},
+    rffont=\scriptsize\color{fontcolor1},
+    textfont=\color{fontcolor1},
+  ifsetup=landscape,
+    titlepos={.2\slidewidth,.93\slideheight},
+    titlewidth=.78\slidewidth,
+    textpos={.2\slidewidth,.83\slideheight},
+    textwidth=.75\slidewidth,
+    textheight=.76\slideheight,
+  ifsetup=portrait,
+    titlepos={.1\slidewidth,.93\slideheight},
+    titlewidth=.9\slidewidth,
+    textheight=.69\slideheight,
+    textpos={.09\slidewidth,.83\slideheight},
+    textwidth=.85\slidewidth,
+    lfpos={.06\slidewidth,.045\slideheight},
+    rfpos={.94\slidewidth,.045\slideheight}   
+}{%  
+  \psframe[linestyle=none,linewidth=0pt,fillstyle=gradient,%
+    gradbegin=darkgreen,gradend=darkolivegreen,%
+    gradmidpoint=1](0,\slideheight)(\slidewidth,0)
+%   \psline[linecolor=darkgoldenrod,linewidth=3pt]%
+%     (0.1\slidewidth,0.865\slideheight)(\slidewidth,0.865\slideheight)
+%   \psline[linecolor=darkgoldenrod,linewidth=1pt]
+%     (0.1\slidewidth,0.855\slideheight)(\slidewidth,0.855\slideheight)
+  \pdifsetup{landscape}{
+  \psframe[fillstyle=gradient,gradbegin=darkolivegreen,%
+    gradend=darkgoldenrod,gradmidpoint=1,linestyle=none]%
+    (0,\slideheight)(0.175\slidewidth,0)
+%     \psline[linecolor=darkgoldenrod,linewidth=3pt]%
+%       (0.1\slidewidth,0.88\slideheight)(\slidewidth,0.88\slideheight)
+%     \psline[linecolor=darkgoldenrod,linewidth=1pt]
+%       (0.1\slidewidth,0.87\slideheight)(\slidewidth,0.87\slideheight)
+    \psline[linecolor=darkgoldenrod,linewidth=3pt]%
+      (0.1\slidewidth,0.865\slideheight)(\slidewidth,0.865\slideheight)
+    \psline[linecolor=darkgoldenrod,linewidth=1pt]
+      (0.1\slidewidth,0.855\slideheight)(\slidewidth,0.855\slideheight)
+  }{
+    \psline[linecolor=darkgoldenrod,linewidth=3pt]%
+      (0.1\slidewidth,0.88\slideheight)(\slidewidth,0.88\slideheight)
+    \psline[linecolor=darkgoldenrod,linewidth=1pt]
+      (0.1\slidewidth,0.87\slideheight)(\slidewidth,0.87\slideheight)
+  }
+}
+
+\pddefinetemplate[basic]{slide}{
+    toctcolor=fontcolor1,
+    tochltcolor=yellow,
+    tocslidesep=1.2ex,
+  ifsetup=landscape,
+    tocpos={.01\slidewidth,.8\slideheight},
+    tocsecsep=2.5ex,
+    tocslideindent=1ex,
+    tocwidth=.14\slidewidth,
+    tocsecm={\psline[linewidth=.5pt,linecolor=pdcolor1]%
+      (-.05,-.05)(.16\slidewidth,-.05)},
+  ifsetup=portrait,
+%     tocpos={.5\slidewidth,.12\slideheight},
+    tocsecsep=.8ex,
+    stochook=tr,stocpos={.42\slidewidth,.12\slideheight},
+    stocfont=\tiny\raggedleft,
+    ntochook=tl,ntocpos={.46\slidewidth,.12\slideheight},
+    ntocfont=\tiny\raggedright,
+}{%
+}
+
+\pddefinetemplate[slide]{sectionslide}{
+  titlehook=t,titlepos={.5\slidewidth,.55\slideheight},
+  titlefont=\bfseries\LARGE\color{fontcolor2}\centering
+}{}
+
+\pddefinetemplate[basic]{wideslide}{%
+  ifsetup=landscape,
+    textpos={.03\slidewidth,.8\slideheight},
+    textwidth=0.94\slidewidth,
+    textheight=0.74\slideheight,
+    titlepos={.1\slidewidth,.93\slideheight},
+}{}
+
+\pddefinetemplate[wideslide]{sectionwideslide}{%
+  titlehook=c,
+  titlefont=\Large\rmfamily\slshape\bfseries\color{fontcolor2}\centering,
+  titlepos={.5\slidewidth,.55\slideheight},
+  titlewidth=.9\slidewidth
+%   ifsetup=landscape,
+%     textpos={.03\slidewidth,.8\slideheight},
+%     textwidth=0.94\slidewidth 
+}{}
+
+\setkeys[pd]{section}{sectemp=sectionslide,widesectemp=sectionwideslide}
+
+\def\pd@tochighlight#1{%
+  \begin{minipage}[b]\pd@@tocwidth
+    \pd@usedtocfont\color\pd@@tochltcolor#1%
+  \end{minipage}%
+}
+
+\def\pd@tocslide#1{\ding{118}\,#1}
+\def\labelitemi{\color{fontcolor2}\footnotesize\ding{110}}
+\def\labelitemii{\color{fontcolor2}\small\ding{117}}
+\def\labelitemiii{\color{fontcolor2}\tiny\ding{110}}
+\def\labelitemiv{\color{fontcolor2}\tiny\ding{117}}
+
+% \def\labelitemi{\footnotesize\ding{110}}
+% \def\labelitemii{\small\ding{117}}
+% \def\labelitemiii{\tiny\ding{110}}
+% \def\labelitemiv{\tiny\ding{117}}
+
+\pdsetup{
+  list={labelsep=1em,leftmargin=*,itemsep=0pt,topsep=5pt,parsep=0pt}
+}
+% \def\rmdefault{cmss}
+\endinput
+%%
+%% End of file `powerdot-autumn.sty'.

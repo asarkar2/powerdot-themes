@@ -1,0 +1,164 @@
+%%
+%% This is file `powerdot-blends.sty',
+%% 
+%% ---------------------------------------------------------------
+%% Author: Anjishnu Sarkar
+%% This is a re-creation of PPRblends.sty, a style file created
+%% by Andrew Arnt (arnt@cs.umass.edu) for prosper.
+%% The style file is compatible with powerdot-v1.4
+%% ---------------------------------------------------------------
+%%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{powerdot-blends}[2010/03/29 v1.0 blends style (AS)]
+% \RequirePackage{times}
+\RequirePackage{pifont}
+\RequirePackage{pst-grad}
+\pddefinepalettes{default}{
+  \definecolor{pdcolor1}{RGB}{10,10,100}
+  \definecolor{pdcolor2}{RGB}{51,51,153} %% SlideTitle color
+  \definecolor{pdcolor3}{RGB}{255,210,23}
+  \definecolor{pdcolor4}{RGB}{68,68,206}
+  \definecolor{pdcolor5}{RGB}{255,62,63}
+}
+\pddefinetemplate{titleslide}{
+  titlefont=\Large\rmfamily\bfseries\color{pdcolor2}\centering,
+  clockcolor=pdcolor1,clockpos={.99\slidewidth,\slideheight},
+  lfpos={.03\slidewidth,.04\slideheight},
+  lffont=\scriptsize\color{pdcolor1},
+%  cfpos={.5\slidewidth,.04\slideheight},
+%  cffont=\scriptsize\color{pdcolor1},
+  rfpos={.97\slidewidth,.04\slideheight},
+  rffont=\scriptsize\color{pdcolor1},
+  texthook=t,textpos={.5\slidewidth,.75\slideheight},
+  textwidth=.9\slidewidth,textfont=\centering,
+  textheight=.68\slideheight,
+  ifsetup=portrait,
+%     textheight=.66\slideheight,
+    lfpos={.03\slidewidth,.03\slideheight},
+%    cfpos={.5\slidewidth,.03\slideheight},
+    rfpos={.97\slidewidth,.03\slideheight},
+}{{%
+  \psset{linestyle=none}%
+  \pd@blendsboxes
+  \psframe[fillstyle=gradient,gradbegin=black,%
+    gradend=white,gradmidpoint=1,gradangle=90]%
+    (0.1\slidewidth,.87\slideheight)%
+    (\slidewidth,.88\slideheight)%
+  \psframe[fillstyle=solid,fillcolor=black]%
+    (.175\slidewidth,.95\slideheight)%
+    (.182\slidewidth,.84\slideheight)%
+}}
+\pddefinetemplate{basic}{
+  titlepos={.25\slidewidth,.93\slideheight},
+  titlewidth=.68\slidewidth,
+  textheight=.75\slideheight,
+  titlefont=\Large\rmfamily\bfseries\color{pdcolor2}\raggedright,
+  clockcolor=pdcolor1,clockpos={.99\slidewidth,\slideheight},
+  lfpos={.03\slidewidth,.04\slideheight},
+  lffont=\scriptsize\color{pdcolor1},
+%  cfpos={.5\slidewidth,.04\slideheight},
+%  cffont=\scriptsize\color{pdcolor1},
+  rfpos={.97\slidewidth,.04\slideheight},
+  rffont=\scriptsize\color{pdcolor1},
+  tocslidesep=.8ex,
+  toctcolor=black,
+  tochlcolor=pdcolor2,
+  tochltcolor=white,
+  ifsetup=portrait,
+    titlewidth=.74\slidewidth,
+    lfpos={.03\slidewidth,.03\slideheight},
+%    cfpos={.5\slidewidth,.03\slideheight},
+    rfpos={.97\slidewidth,.03\slideheight},
+    textpos={.05\slidewidth,.83\slideheight},
+    textheight=.69\slideheight,
+    textwidth=.9\slidewidth,
+    tocsecsep=.8ex,
+    stochook=tr,stocpos={.42\slidewidth,.12\slideheight},
+    stocfont=\tiny\raggedleft,
+    ntochook=tl,ntocpos={.46\slidewidth,.12\slideheight},
+    ntocfont=\tiny\raggedright,
+  ifsetup=landscape,
+    textpos={.2\slidewidth,.83\slideheight},
+    textwidth=.75\slidewidth,
+    textheight=.75\slideheight,
+}{{%
+  \psset{linestyle=none}%
+  \pd@blendsboxes
+  \psframe[fillstyle=gradient,gradbegin=black,%
+    gradend=white,gradmidpoint=1,gradangle=90]%
+    (0.1\slidewidth,.87\slideheight)%
+    (\slidewidth,.88\slideheight)%
+}}
+\pddefinetemplate[basic]{slide}{
+  ifsetup=landscape,
+    tocpos={.015\slidewidth,.83\slideheight},
+    tocwidth=.14\slidewidth,
+    tocsecm={\psline[linewidth=.5pt,linecolor=pdcolor2]%
+      (-.05,-.05)(.143\slidewidth,-.05)},
+}{%
+  \pdifsetup{landscape}{%
+    \psframe[linestyle=none,fillstyle=gradient,gradbegin=black,%
+      gradend=white,gradmidpoint=1](.175\slidewidth,.95\slideheight)%
+      (.182\slidewidth,.04\slideheight)%
+   }{%
+    \psframe[fillstyle=solid,fillcolor=black]%
+      (.175\slidewidth,.95\slideheight)%
+      (.182\slidewidth,.84\slideheight)%
+   }%
+}
+\pddefinetemplate[basic]{wideslide}{
+  textwidth=.9\slidewidth,
+  ifsetup=landscape,
+    textpos={.05\slidewidth,.83\slideheight},
+}{%
+  \psset{linestyle=none}%
+  \psframe[fillstyle=solid,fillcolor=black]%
+    (.175\slidewidth,.95\slideheight)%
+    (.182\slidewidth,.84\slideheight)%
+}
+\pddefinetemplate[slide]{sectionslide}{
+  titlehook=c,
+  titlefont=\LARGE\rmfamily\bfseries\color{pdcolor2}\centering,
+  ifsetup=landscape,
+    titlepos={.575\slidewidth,.55\slideheight},
+    titlewidth=.75\slidewidth,
+  ifsetup=portrait,
+    titlepos={.5\slidewidth,.55\slideheight},
+    titlewidth=.9\slidewidth
+}{}
+\pddefinetemplate[wideslide]{sectionwideslide}{
+  titlehook=c,
+  titlefont=\LARGE\rmfamily\bfseries\color{pdcolor2}\centering,
+  titlepos={.5\slidewidth,.55\slideheight},
+  titlewidth=.9\slidewidth
+}{}
+\def\pd@blendsboxes{%
+  \psset{linestyle=none}%
+  \psframe[fillstyle=gradient,gradbegin=pdcolor3,%
+    gradend=white,gradmidpoint=1,gradangle=90]%
+    (0.12\slidewidth,0.88\slideheight)%
+    (0.22\slidewidth,0.98\slideheight)
+  \psframe[fillstyle=gradient,gradbegin=pdcolor4,%
+    gradend=white,gradmidpoint=1,gradangle=90]%
+    (0.13\slidewidth,0.85\slideheight)%
+    (0.24\slidewidth,0.92\slideheight)
+  \psframe[fillstyle=gradient,gradbegin=pdcolor5,%
+    gradend=white,gradmidpoint=1,gradangle=-45]%
+    (0.05\slidewidth,0.86\slideheight)%
+    (0.171\slidewidth,0.93\slideheight)
+}
+\setkeys[pd]{section}{sectemp=sectionslide,widesectemp=sectionwideslide}
+\def\pd@tocslide#1{\ding{118}\,#1}
+\def\labelitemi{\footnotesize\ding{108}}
+\def\labelitemii{\small\ding{70}}
+\def\labelitemiii{\tiny\ding{110}}
+\def\labelitemiv{\tiny\ding{117}}
+\pdsetup{
+  list={labelsep=1em,leftmargin=*,itemsep=0pt,topsep=5pt,parsep=0pt}
+}
+\def\rmdefault{phv}
+\def\sfdefault{phv}
+\def\Hv@scale{.85}
+\endinput
+%%
+%% End of file `powerdot-blends.sty'.

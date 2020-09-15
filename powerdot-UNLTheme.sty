@@ -1,0 +1,117 @@
+%%
+%% This is file `powerdot-UNLTheme.sty',
+%% 
+%% ---------------------------------------------------------------
+%% Author: Anjishnu Sarkar
+%% This is a re-creation of beamerthemeUNLTheme.sty, a style file created
+%% by Chris Bourke for beamer.
+%% The style file is compatible with powerdot-v1.4
+%% ---------------------------------------------------------------
+%%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{powerdot-UNLTheme}[2010/04/16 v1.0 UNLTheme style (AS)]
+\RequirePackage{pifont}
+\RequirePackage{pst-grad}
+\RequirePackage{pst-blur}
+\RequirePackage{times}
+  \definecolor{pdcolor1}{RGB}{140,15,15}
+  \colorlet{pdcolor2}{white}
+\pddefinetemplate{titleslide}{
+  titlefont=\large\bfseries\centering,
+  clockcolor=pdcolor2,clockpos={.99\slidewidth,\slideheight},
+  lfpos={.025\slidewidth,.02\slideheight},
+  rfpos={.97\slidewidth,.02\slideheight},
+  texthook=t,textpos={.5\slidewidth,.7\slideheight},
+  textwidth=.9\slidewidth,textfont=\centering,
+  textheight=.62\slideheight
+}{%
+    \psframe*[linecolor=pdcolor1,shadow=true,blur=true,linewidth=0pt]%
+        (0,\slideheight)(\slidewidth,.87\slideheight)%
+}
+\pddefinetemplate{basic}{
+  titlefont=\large\bfseries\raggedright\color{pdcolor2},
+  clockcolor=pdcolor2,clockpos={.99\slidewidth,\slideheight},
+  lfpos={.025\slidewidth,.02\slideheight},
+  rfpos={.97\slidewidth,.02\slideheight},
+  tocslidesep=.8ex,
+  toctcolor=pdcolor2,
+  tochlcolor=pdcolor2,
+  tochltcolor=pdcolor1,
+  ifsetup=portrait,    
+    titlepos={0.05\slidewidth,0.93\slideheight},
+    titlewidth=0.88\slidewidth,
+    textpos={.05\slidewidth,.83\slideheight},
+    textwidth=.9\slidewidth,
+    textheight=.69\slideheight,
+    toctcolor=black,
+    tochlcolor=pdcolor1,
+    tochltcolor=pdcolor2,
+    tocsecsep=.6ex,
+    stochook=tr,stocpos={.42\slidewidth,.12\slideheight},
+    stocfont=\tiny\raggedleft,
+    ntocpos={.46\slidewidth,.12\slideheight},
+  ifsetup=landscape,
+    titlepos={.17\slidewidth,.93\slideheight},
+    titlewidth=.75\slidewidth,
+    textpos={.2\slidewidth,.83\slideheight},
+    textwidth=.75\slidewidth,
+    textheight=.76\slideheight,
+}{}
+\pddefinetemplate[basic]{slide}{
+  ifsetup=landscape,
+    tocpos={0.004\slidewidth,.83\slideheight},
+    tocwidth=.14\slidewidth,
+    tocsecm={\psline[linewidth=.5pt,linecolor=pdcolor2]%
+      (-.05,-.05)(.143\slidewidth,-.05)}
+}{%
+  \pdifsetup{landscape}{%
+    \psframe*[linecolor=pdcolor1,linewidth=0pt,shadow=true,blur=true]%
+      (0.13\slidewidth,\slideheight)(\slidewidth,.87\slideheight)%
+    \psframe[fillstyle=solid,fillcolor=pdcolor1,linestyle=none,%
+      linewidth=0pt,shadow=true,blur=true]
+      (0,0)(.13\slidewidth,0.87\slideheight)%
+    \psframe[fillstyle=gradient,gradbegin=pdcolor1,gradend=pdcolor2,
+      gradmidpoint=1,shadow=true,blur=true,linestyle=none,linewidth=0pt]
+      (0,0)(.13\slidewidth,0.08\slideheight)%
+    \psline[linewidth=1pt,linecolor=pdcolor1]%
+    (0,0.08\slideheight)(.13\slidewidth,0.08\slideheight)
+  }{
+  \psframe*[linecolor=pdcolor1,linewidth=0pt,shadow=true,blur=true]%
+    (0,\slideheight)(\slidewidth,.87\slideheight)%
+  }%
+}
+\pddefinetemplate[slide]{sectionslide}{
+  titlehook=c,titlefont=\Large\bfseries\centering,
+  ifsetup=landscape,
+    titlepos={.575\slidewidth,.55\slideheight},
+  ifsetup=portrait,
+    titlewidth=.9\slidewidth,
+    titlepos={.5\slidewidth,.55\slideheight}
+}{}
+\pddefinetemplate[basic]{wideslide}{
+%   titlepos={0.05\slidewidth,0.93\slideheight},
+%   titlewidth=0.88\slidewidth,
+  textpos={.05\slidewidth,.83\slideheight},
+  textwidth=.9\slidewidth
+}{
+  \psframe*[linecolor=pdcolor1,linewidth=0pt,shadow=true,blur=true]%
+    (0,\slideheight)(\slidewidth,.87\slideheight)%    
+}
+\pddefinetemplate[wideslide]{sectionwideslide}{
+  titlehook=c,titlefont=\Large\bfseries\centering,
+  titlewidth=.9\slidewidth,
+  titlepos={.5\slidewidth,.55\slideheight}
+}{}
+\setkeys[pd]{section}{
+  sectemp=sectionslide,widesectemp=sectionwideslide
+}
+\def\labelitemi{\footnotesize\ding{110}}
+\def\labelitemii{\small\ding{117}}
+\def\labelitemiii{\tiny\ding{110}}
+\def\labelitemiv{\tiny\ding{117}}
+\pdsetup{
+  list={labelsep=1em,leftmargin=*,itemsep=0pt,topsep=5pt,parsep=0pt}
+}
+\endinput
+%%
+%% End of file `powerdot-UNLTheme.sty'.

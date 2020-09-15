@@ -1,0 +1,164 @@
+%%
+%% This is file `powerdot-wj.sty',
+%% 
+%% ---------------------------------------------------------------
+%% Author: Anjishnu Sarkar
+%% Inspired by wj template, originally created by
+%% Willem-Jan van Hoeve, (W.J.van.Hoeve@cwi.nl) for prosper.
+%% Re-written for powerdot
+%% The style file is compatible with powerdot-v1.4
+%% ---------------------------------------------------------------
+%% 
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{powerdot-wj}[2010/04/11 v1.0 wj style (AS)]
+\RequirePackage{pifont}
+\RequirePackage{amssymb}
+\RequirePackage{pst-grad}
+\RequirePackage{pst-slpe}
+\pddefinepalettes{default}{%
+    \definecolor{wjbasecolor}{RGB}{252,217,187}
+    \colorlet{fontcolor1}{wjbasecolor!20!black}
+    \colorlet{fontcolor2}{red}
+    \definecolor{pdcolor1}{RGB}{205,119,100}
+    \definecolor{pdcolor3}{RGB}{252,217,121}
+    \definecolor{pdcolor2}{RGB}{198,134,37}
+}
+\pddefinetemplate{titleslide}{
+  titlefont=\large\bfseries\centering\color{fontcolor1},
+  clockpos={.99\slidewidth,\slideheight},
+  lfpos={.03\slidewidth,.04\slideheight},
+  lffont=\scriptsize\color{fontcolor1},
+%  cfpos={.5\slidewidth,.04\slideheight},
+%  cffont=\scriptsize\color{fontcolor1},
+  rfpos={.97\slidewidth,.04\slideheight},
+  rffont=\scriptsize\color{fontcolor1},
+  texthook=tl,textpos={.05\slidewidth,.83\slideheight},
+  textwidth=.9\slidewidth,textfont=\centering\color{fontcolor1},
+  textheight=.75\slideheight
+}{%
+    \psframe[linestyle=none,fillstyle=gradient,gradbegin=wjbasecolor,%
+        gradend=white,gradmidpoint=1]
+        (0,0)(\slidewidth,\slideheight)
+}
+\pddefinetemplate{basic}{
+  titlepos={.19\slidewidth,.93\slideheight},
+  titlewidth=.8\slidewidth,textheight=.75\slideheight,
+  titlefont=\Large\bfseries\raggedright\color{pdcolor1},
+  clockpos={.99\slidewidth,\slideheight},
+  lfpos={.03\slidewidth,.04\slideheight},
+  lffont=\scriptsize\color{fontcolor1},
+%  cfpos={.5\slidewidth,.04\slideheight},
+%  cffont=\scriptsize\color{fontcolor1},
+  rfpos={.97\slidewidth,.04\slideheight},
+  rffont=\scriptsize\color{fontcolor1},
+  tocslidesep=.6ex,
+  toctcolor=fontcolor1,
+  tochlcolor=fontcolor1,
+  tochltcolor=fontcolor2,
+  textfont=\color{fontcolor1},
+  ifsetup=portrait,
+    titlepos={.06\slidewidth,.93\slideheight},
+    textpos={.05\slidewidth,.83\slideheight},
+    textwidth=.9\slidewidth,
+    textheight=0.69\slideheight,
+    tocsecsep=.6ex,
+    stochook=tr,stocpos={.45\slidewidth,.12\slideheight},
+    stocfont=\tiny\raggedleft,
+    ntocpos={.49\slidewidth,.12\slideheight},
+  ifsetup=landscape,
+    textpos={.2\slidewidth,.83\slideheight},
+    textwidth=.75\slidewidth,
+}{%
+    \psframe[linestyle=none,fillstyle=gradient,gradbegin=wjbasecolor,%
+        gradend=white,gradmidpoint=1]
+        (0,0)(\slidewidth,\slideheight)
+}
+\pddefinetemplate[basic]{slide}{
+  ifsetup=landscape,
+    tocpos={.015\slidewidth,.83\slideheight},
+    tocwidth=.14\slidewidth,
+    tocsecm={\psline[linewidth=.5pt,linecolor=pdcolor2]%
+      (-.05,-.05)(.143\slidewidth,-.05)}
+}{%
+  \psline[linewidth=0.06,linecolor=pdcolor3]
+    (0.04\slidewidth,0.87\slideheight)(.96\slidewidth,0.87\slideheight)
+  \psline[linewidth=0.02,linecolor=pdcolor2]
+    (0.04\slidewidth,0.87\slideheight)(.96\slidewidth,0.87\slideheight)
+%   \psframe[linestyle=solid,linecolor=pdcolor3,%
+%     fillstyle=solid,fillcolor=pdcolor2]
+%     (0.04\slidewidth,0.87\slideheight)(.96\slidewidth,0.88\slideheight)
+  \pdifsetup{landscape}{%
+  \psframe[linestyle=none,fillstyle=gradient,gradbegin=white,
+    gradend=pdcolor2,gradmidpoint=0]%
+    (0.163\slidewidth,0.86\slideheight)(0.167\slidewidth,0.1\slideheight)
+  }{}%
+}
+\pddefinetemplate[basic]{wideslide}{
+  titlepos={.12\slidewidth,.93\slideheight},
+  textpos={.05\slidewidth,.83\slideheight},
+  textwidth=.9\slidewidth
+}{%
+  \psline[linewidth=0.06,linecolor=pdcolor3]
+    (0.04\slidewidth,0.87\slideheight)(.96\slidewidth,0.87\slideheight)
+  \psline[linewidth=0.02,linecolor=pdcolor2]
+    (0.04\slidewidth,0.87\slideheight)(.96\slidewidth,0.87\slideheight)
+}
+\pddefinetemplate[slide]{sectionslide}{
+  titlehook=c,titlefont=\Large\bfseries\centering\color{pdcolor1},
+  ifsetup=landscape,
+    titlepos={.575\slidewidth,.55\slideheight},
+    titlewidth=.75\slidewidth,
+  ifsetup=portrait,
+    titlepos={.5\slidewidth,.55\slideheight},
+    titlewidth=.9\slidewidth
+}{}
+\pddefinetemplate[wideslide]{sectionwideslide}{
+  titlehook=c,titlefont=\Large\bfseries\centering,
+  titlepos={.5\slidewidth,.55\slideheight},
+  titlewidth=.9\slidewidth
+}{}
+\setkeys[pd]{section}{sectemp=sectionslide,widesectemp=sectionwideslide}
+\def\pd@tochighlight#1{%
+  \begin{minipage}[b]\pd@@tocwidth
+    \pd@usedtocfont\color\pd@@tochltcolor#1%
+  \end{minipage}%
+}
+
+\newcommand{\psbullet}[2]{%
+  \resizebox{#1\textwidth}{!}{%
+    \begin{pspicture}(-2.0,-2.0)(2.0,2.0)
+      \pscircle[sloperadius=85pt,fillstyle=ccslopes,%
+% comment-line   slopecolors=0 (0.99 0.99 0.99)  20 (#2) 75 (0.01 0 0)  3,
+        slopecolors=0 0.99 0.99 0.99  20 #2 75 0.01 0 0  3,
+        slopecenter=0.3 0.7,linestyle=none](0,0){2}
+    \end{pspicture}
+  }
+}
+\renewcommand{\labelitemi}{\psbullet{0.022}{1 0.2 0.2}}     %% Almost red
+\renewcommand{\labelitemii}{\psbullet{0.022}{1 1 0.2}}      %% Almost yellow
+\renewcommand{\labelitemiii}{\psbullet{0.022}{1 0.2 1}}     %% Almost magenta
+\renewcommand{\labelitemiv}{\psbullet{0.022}{0.5 0.5 0.5}}  %% grey
+
+% \ifnum\pd@@type=\z@
+% %   \def\pd@currentstate{0}%
+% % \ifnum\pd@currentstate=\z@
+%     \renewcommand{\labelitemi}{\psbullet{0.022}{1 0.2 0.2}}     %% Almost red
+%     \renewcommand{\labelitemii}{\psbullet{0.022}{1 1 0.2}}      %% Almost yellow
+%     \renewcommand{\labelitemiii}{\psbullet{0.022}{1 0.2 1}}     %% Almost magenta
+%     \renewcommand{\labelitemiv}{\psbullet{0.022}{0.5 0.5 0.5}}  %% grey
+% \else
+%     \renewcommand{\labelitemiv}{\psbullet{0.022}{0.85 0.85 0.85}}  %% iacolor-gray
+% \fi
+
+%\renewcommand{\labelitemiv}{\psbullet{0.022}{0.85 0.85 0.85}}  %% iacolor-gray
+
+\pdsetup{
+  list={labelsep=1em,leftmargin=*,itemsep=0pt,topsep=5pt,parsep=0pt}
+}
+% \def\rmdefault{cmss}
+\def\rmdefault{phv}
+\def\sfdefault{phv}
+\def\Hv@scale{.85}
+\endinput
+%%
+%% End of file `powerdot-wj.sty'.

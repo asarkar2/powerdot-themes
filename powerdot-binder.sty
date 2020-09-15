@@ -1,0 +1,121 @@
+%%
+%% This is file `powerdot-binder.sty',
+%% 
+%% ---------------------------------------------------------------
+%% Author: Anjishnu Sarkar
+%% This was inspired by PPRcapsules, a style file created
+%% by Mathieu Goutelle (Mathieu.Goutelle@ens-lyon.fr) for prosper.
+%% The style file is compatible with powerdot-v1.4
+%% ---------------------------------------------------------------
+%%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{powerdot-binder}[2010/04/16 v1.0 binder style (AS)]
+\RequirePackage{pifont}
+\RequirePackage{pst-grad}
+\RequirePackage{times}
+  \definecolor{pdcolor1}{RGB}{164,208,133}  %% very-light-green
+  \colorlet{pdcolor2}{white}
+  \definecolor{pdcolor3}{RGB}{120,59,28}    %% brown
+  \definecolor{pdcolor4}{RGB}{46,64,102}    %% blue
+  \definecolor{pdcolor5}{RGB}{154,204,155}  %% light-green
+\pddefinetemplate{titleslide}{
+  titlefont=\large\bfseries\centering,
+  clockcolor=black,clockpos={.99\slidewidth,\slideheight},
+  lfpos={.025\slidewidth,.02\slideheight},
+%  cfpos={.5\slidewidth,.02\slideheight},
+  rfpos={.97\slidewidth,.02\slideheight},
+  texthook=t,textpos={.5\slidewidth,.7\slideheight},
+  textwidth=.9\slidewidth,textfont=\centering,
+  textheight=.62\slideheight
+}{%
+    \psset{linestyle=none,linewidth=0pt}
+    \psframe[fillstyle=gradient,gradbegin=pdcolor1,gradend=pdcolor2,
+      gradmidpoint=1,gradangle=90](0,0)(\slidewidth,\slideheight) 
+}
+\pddefinetemplate{basic}{
+  titlepos={.18\slidewidth,.93\slideheight},
+  titlewidth=.75\slidewidth,
+  titlefont=\large\bfseries\raggedright\color{pdcolor3},
+  clockcolor=black,clockpos={.99\slidewidth,\slideheight},
+  lfpos={.025\slidewidth,.02\slideheight},
+  rfpos={.97\slidewidth,.02\slideheight},
+  tocslidesep=.8ex,
+  toctcolor=pdcolor2,
+  tochltcolor=black,
+  ifsetup=portrait,    
+    textpos={.05\slidewidth,.83\slideheight},
+    textwidth=.9\slidewidth,
+    textheight=.69\slideheight,
+    toctcolor=black,
+    tochlcolor=pdcolor4,
+    tochltcolor=pdcolor2,
+    tocsecsep=.6ex,
+    stochook=tr,stocpos={.42\slidewidth,.12\slideheight},
+    stocfont=\tiny\raggedleft,
+    ntocpos={.46\slidewidth,.12\slideheight},
+  ifsetup=landscape,
+    textpos={.2\slidewidth,.83\slideheight},
+    textwidth=.75\slidewidth,
+    textheight=.76\slideheight,
+}{%
+    \psset{linestyle=none,linewidth=0pt}
+    \psframe[fillstyle=gradient,gradbegin=pdcolor1,gradend=pdcolor2,
+      gradmidpoint=1,gradangle=90](0,0)(\slidewidth,\slideheight) 
+    \psframe[fillstyle=solid,fillcolor=pdcolor5]
+      (0,0.87\slideheight)(0.55\slidewidth,\slideheight)%
+    \psframe[fillstyle=solid,fillcolor=pdcolor2]
+      (0.19\slidewidth,0.87\slideheight)(0.55\slidewidth,0.93\slideheight)%
+    \psellipse[fillstyle=solid,fillcolor=pdcolor2]
+      (0.19\slidewidth,0.87\slideheight)(0.04\slidewidth,0.06\slideheight)
+    \psline[linestyle=solid,linewidth=6pt,linecolor=pdcolor4]{cc-cc}%
+      (0.175\slidewidth,0.88\slideheight)(0.95\slidewidth,0.88\slideheight)
+}
+\pddefinetemplate[basic]{slide}{
+  ifsetup=landscape,
+    tocpos={0.01\slidewidth,.83\slideheight},
+    tocwidth=.14\slidewidth,
+    tocsecm={\psline[linestyle=solid,linewidth=.5pt,linecolor=pdcolor4]%{cc-cc}%
+      (-.05,-.05)(.134\slidewidth,-.05)}
+}{
+    \pdifsetup{landscape}{%
+      \psframe[fillstyle=solid,fillcolor=pdcolor5]
+        (0,0)(.15\slidewidth,\slideheight)%
+    }{}
+}
+\pddefinetemplate[slide]{sectionslide}{
+  titlehook=c,titlefont=\Large\bfseries\centering,
+  ifsetup=landscape,
+    titlepos={.575\slidewidth,.55\slideheight},
+  ifsetup=portrait,
+    titlewidth=.9\slidewidth,
+    titlepos={.5\slidewidth,.55\slideheight}
+}{}
+\pddefinetemplate[basic]{wideslide}{
+  textpos={.05\slidewidth,.83\slideheight},
+  textwidth=.9\slidewidth
+}{}
+\pddefinetemplate[wideslide]{sectionwideslide}{
+  titlehook=c,titlefont=\Large\bfseries\centering,
+  titlewidth=.9\slidewidth,
+  titlepos={.5\slidewidth,.55\slideheight}
+}{}
+\setkeys[pd]{section}{
+  sectemp=sectionslide,widesectemp=sectionwideslide
+}
+\pdifsetup{landscape}{%
+  \def\pd@tochighlight#1{%
+    \begin{minipage}[b]\pd@@tocwidth
+      \pd@usedtocfont\color\pd@@tochltcolor#1%
+    \end{minipage}%
+  }
+}{}
+\def\labelitemi{\footnotesize\ding{110}}
+\def\labelitemii{\small\ding{117}}
+\def\labelitemiii{\tiny\ding{110}}
+\def\labelitemiv{\tiny\ding{117}}
+\pdsetup{
+  list={labelsep=1em,leftmargin=*,itemsep=0pt,topsep=5pt,parsep=0pt}
+}
+\endinput
+%%
+%% End of file `powerdot-binder.sty'.

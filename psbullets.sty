@@ -1,0 +1,32 @@
+%% PSTricks bullets for itemize commands to be used in slides
+%% Author: Anjishnu Sarkar
+%% Usage: \usepackage{psbullets}
+
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{psbullets}[2008/04/08]
+
+% \PassOptionsToPackage{dvipsnames}{xcolor}
+
+\ExecuteOptions{}
+\ProcessOptions\relax
+
+\RequirePackage{graphicx}
+\RequirePackage{pst-slpe} 
+
+\newcommand{\psbullet}[2]{%
+  \resizebox{#1\textwidth}{!}{%
+    \begin{pspicture}(-2.0,-2.0)(2.0,2.0)
+      \pscircle[sloperadius=85pt,fillstyle=ccslopes,%
+% comment-line   slopecolors=0 (0.99 0.99 0.99)  20 (#2) 75 (0.01 0 0)  3,
+        slopecolors=0 0.99 0.99 0.99  20 #2 75 0.01 0 0  3,
+        slopecenter=0.3 0.7,linestyle=none](0,0){2}
+    \end{pspicture}
+  }
+}
+
+\renewcommand{\labelitemi}{\psbullet{0.022}{1 0.2 0.2}}     %% Almost red
+\renewcommand{\labelitemii}{\psbullet{0.022}{1 1 0.2}}      %% Almost yellow
+\renewcommand{\labelitemiii}{\psbullet{0.022}{1 0.2 1}}     %% Almost magenta
+\renewcommand{\labelitemiv}{\psbullet{0.022}{0.75 0.5 0.2}} %% Brown
+% \renewcommand{\labelitemiv}{\psbullet{0.022}{0.5 0.5 0.5}}  %% gray
+
