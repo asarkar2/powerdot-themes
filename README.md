@@ -15,6 +15,6 @@ Copy the files to the following folder:
 
 ## Usage:
 
-    # If you want to use the 'wj' theme, then
+    % If you want to use the 'wj' theme, then
     \documentclass[style=wj]{powerdot}
     
